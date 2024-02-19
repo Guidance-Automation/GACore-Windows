@@ -123,7 +123,7 @@ public class KingpinStateReporterViewModel : AbstractViewModel<IKingpinStateRepo
 
     public void Refresh()
     {
-        KingpinState? toProcess = Model?.KingpinState;
+        KingpinStateDto? toProcess = Model?.KingpinState;
 
         if (toProcess != null)
         {
@@ -131,7 +131,7 @@ public class KingpinStateReporterViewModel : AbstractViewModel<IKingpinStateRepo
             _ipAddress = IPAddress.Parse(toProcess.IPAddress);
             IsVirtual = toProcess.IsVirtual;
 
-            CurrentMovementType = toProcess.MovementType;
+            CurrentMovementType = toProcess.CurrentMovementType;
 
             X = toProcess.X;
             Y = toProcess.Y;

@@ -2,7 +2,7 @@
 
 	<PropertyGroup>
 		<TargetFramework>net8.0-windows</TargetFramework>
-		<PackageVersion>1.0.0-alpha.2</PackageVersion>
+		<PackageVersion>1.0.0-alpha.3</PackageVersion>
 		<Platforms>x64</Platforms>
 		<UseWPF>true</UseWPF>
 		<ImplicitUsings>true</ImplicitUsings>
@@ -10,7 +10,7 @@
 		<Authors>Martin Davies, Callum Clarke, Ollie Sharratt</Authors>
 		<Copyright>Guidance Automation 2024</Copyright>
 		<Description>Core components for Guidance Automation assemblies.</Description>
-		<RepositoryUrl>https://github.com/GuidanceAutomation/GACore-windows</RepositoryUrl>
+		<RepositoryUrl>https://github.com/Guidance-Automation/GACore-Windows</RepositoryUrl>
 		<PackageId>GACore-windows</PackageId>
 		<Company>Guidance Automation LTD</Company>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
@@ -29,17 +29,8 @@
 
 	<ItemGroup>
 		<PackageReference Include="Extended.Wpf.Toolkit" Version="4.6.0" />
-		<PackageReference Include="GACore" Version="3.0.0-alpha.4" />
-		<PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
-		<PackageReference Include="NLog" Version="5.2.8"/>
-		<PackageReference Include="System.Configuration.ConfigurationManager" Version="8.0.0" />
-		<PackageReference Include="System.Drawing.Common" Version="8.0.1" />
-		<PackageReference Include="System.ServiceModel.Primitives" Version="8.0.0" />
-		<PackageReference Include="System.ServiceModel.Http" Version="8.0.0" />
-		<PackageReference Include="System.ServiceModel.Duplex" Version="6.0.0" />
-		<PackageReference Include="System.ServiceModel.NetTcp" Version="8.0.0" />
-		<PackageReference Include="System.ServiceModel.Security" Version="6.0.0" />
-		<PackageReference Include="System.ServiceModel.Federation" Version="8.0.0" />
+		<PackageReference Include="GACore" Version="3.0.0-alpha.5" />
+		<PackageReference Include="NLog" Version="5.2.8" />
 	</ItemGroup>
 
 	<ItemGroup>

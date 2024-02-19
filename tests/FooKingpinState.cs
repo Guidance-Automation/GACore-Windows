@@ -9,9 +9,9 @@ namespace GACore.DemoApp;
 /// </summary>
 public static class FooKingpinState
 {
-    public static KingpinState GetKingpinState()
+    public static KingpinStateDto GetKingpinState()
     {
-        return new KingpinState()
+        return new KingpinStateDto()
         {
             PositionControlStatus = Tools.RandomEnumValue<PositionControlStatus>(),
             NavigationStatus = Tools.RandomEnumValue<NavigationStatus>(),
@@ -22,16 +22,16 @@ public static class FooKingpinState
             X = Tools.Random.Next(-10, 10),
             Y = Tools.Random.Next(-10, 10),
             Heading = Tools.Random.Next(-3, 3),
-            MovementType = Tools.RandomEnumValue<MovementType>(),
+            CurrentMovementType = Tools.RandomEnumValue<MovementType>(),
             IPAddress = IPAddress.Loopback.ToString(),
             ExtendedDataFaultStatus = ExtendedDataFaultStatus.NoFault,
             FrozenState = Tools.RandomEnumValue<FrozenState>()
         };
     }
 
-    public static KingpinState FromGood()
+    public static KingpinStateDto FromGood()
     {
-        KingpinState state = GetKingpinState();
+        KingpinStateDto state = GetKingpinState();
         state.PositionControlStatus = PositionControlStatus.Okposition;
         state.NavigationStatus = NavigationStatus.Oknavigation;
         state.DynamicLimiterStatus = DynamicLimiterStatus.Ok;
