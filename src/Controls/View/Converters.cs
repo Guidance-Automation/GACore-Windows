@@ -1,4 +1,4 @@
-﻿using GAAPICommon.Architecture;
+﻿using GAAPICommon.Enums;
 using GACore.Extensions;
 using System.Globalization;
 using System.Windows.Data;

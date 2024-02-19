@@ -1,4 +1,6 @@
-﻿using GAAPICommon.Architecture;
+﻿using GAAPICommon;
+using GAAPICommon.Enums;
+using GAAPICommon.Messages;
 using GACore.Architecture;
 using System.Net;
 
@@ -121,15 +123,15 @@ public class KingpinStateReporterViewModel : AbstractViewModel<IKingpinStateRepo
 
     public void Refresh()
     {
-        IKingpinState? toProcess = Model?.KingpinState;
+        KingpinState? toProcess = Model?.KingpinState;
 
         if (toProcess != null)
         {
             Alias = toProcess.Alias;
-            _ipAddress = toProcess.IPAddress;
+            _ipAddress = IPAddress.Parse(toProcess.IPAddress);
             IsVirtual = toProcess.IsVirtual;
 
-            CurrentMovementType = toProcess.CurrentMovementType;
+            CurrentMovementType = toProcess.MovementType;
 
             X = toProcess.X;
             Y = toProcess.Y;
@@ -153,8 +155,8 @@ public class KingpinStateReporterViewModel : AbstractViewModel<IKingpinStateRepo
             Heading = float.NaN;
 
             DynamicLimiterStatus = DynamicLimiterStatus.Unknown;
-            NavigationStatus = NavigationStatus.Unknown;
-            PositionControlStatus = PositionControlStatus.Unknown;
+            NavigationStatus = NavigationStatus.UnknownNavigation;
+            PositionControlStatus = PositionControlStatus.UnknownPosition;
             IsInFault = false;
         }
 
@@ -163,9 +165,9 @@ public class KingpinStateReporterViewModel : AbstractViewModel<IKingpinStateRepo
 
     private DynamicLimiterStatus _dynamicLimiterStatus = DynamicLimiterStatus.Unknown;
 
-    private NavigationStatus _navigationStatus = NavigationStatus.Unknown;
+    private NavigationStatus _navigationStatus = NavigationStatus.UnknownNavigation;
 
-    private PositionControlStatus _positionControlStatus = PositionControlStatus.Unknown;
+    private PositionControlStatus _positionControlStatus = PositionControlStatus.UnknownPosition;
 
     public NavigationStatus NavigationStatus
     {

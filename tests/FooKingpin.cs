@@ -1,14 +1,13 @@
-﻿using GAAPICommon.Architecture;
+﻿using GAAPICommon.Messages;
 using GACore.Architecture;
-using System.Runtime.Versioning;
 
 namespace GACore.DemoApp;
 
 public class FooKingpin : IKingpinStateReporter
 {
-	private IKingpinState? _kingpinState = null;
+	private KingpinState? _kingpinState = null;
 
-	public IKingpinState? KingpinState
+	public KingpinState? KingpinState
 	{
 		get { return _kingpinState; }
 		set 
@@ -17,13 +16,11 @@ public class FooKingpin : IKingpinStateReporter
 		}
 	}
 
-    [SupportedOSPlatform("windows")]
     public void Randomize()
 	{
-		KingpinState = new FooKingpinState();
+		KingpinState = FooKingpinState.GetKingpinState();
 	}
 
-    [SupportedOSPlatform("windows")]
     public void SetGood()
 	{
 		KingpinState = FooKingpinState.FromGood();
