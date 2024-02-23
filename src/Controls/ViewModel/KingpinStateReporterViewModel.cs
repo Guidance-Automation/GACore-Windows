@@ -2,6 +2,7 @@
 using GAAPICommon.Enums;
 using GAAPICommon.Messages;
 using GACore.Architecture;
+using GACore.UI.ViewModel;
 using System.Net;
 
 namespace GACore.UI.Controls.ViewModel;
