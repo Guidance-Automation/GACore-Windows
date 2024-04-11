@@ -1,6 +1,6 @@
 ﻿using GAAPICommon;
 using GAAPICommon.Enums;
-using GAAPICommon.Messages;
+using GAAPICommon.Interfaces;
 using GACore.Architecture;
 using GACore.UI.ViewModel;
 using System.Net;
@@ -124,12 +124,12 @@ public class KingpinStateReporterViewModel : AbstractViewModel<IKingpinStateRepo
 
     public void Refresh()
     {
-        KingpinStateDto? toProcess = Model?.KingpinState;
+        IKingpinState? toProcess = Model?.KingpinState;
 
         if (toProcess != null)
         {
             Alias = toProcess.Alias;
-            _ipAddress = IPAddress.Parse(toProcess.IPAddress);
+            _ipAddress = toProcess.IPAddress;
             IsVirtual = toProcess.IsVirtual;
 
             CurrentMovementType = toProcess.CurrentMovementType;

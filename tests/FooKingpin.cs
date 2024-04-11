@@ -1,13 +1,13 @@
-﻿using GAAPICommon.Messages;
+﻿using GAAPICommon.Interfaces;
 using GACore.Architecture;
 
 namespace GACore.DemoApp;
 
 public class FooKingpin : IKingpinStateReporter
 {
-	private KingpinStateDto? _kingpinState = null;
+	private IKingpinState? _kingpinState = null;
 
-	public KingpinStateDto? KingpinState
+	public IKingpinState? KingpinState
 	{
 		get { return _kingpinState; }
 		set 

@@ -1,5 +1,5 @@
-﻿using GAAPICommon.Enums;
-using GAAPICommon.Messages;
+﻿using GAAPICommon.Constructors;
+using GAAPICommon.Enums;
 using System.Net;
 
 namespace GACore.DemoApp;
@@ -9,9 +9,9 @@ namespace GACore.DemoApp;
 /// </summary>
 public static class FooKingpinState
 {
-    public static KingpinStateDto GetKingpinState()
+    public static KingpinState GetKingpinState()
     {
-        return new KingpinStateDto()
+        return new KingpinState()
         {
             PositionControlStatus = Tools.RandomEnumValue<PositionControlStatus>(),
             NavigationStatus = Tools.RandomEnumValue<NavigationStatus>(),
@@ -23,15 +23,15 @@ public static class FooKingpinState
             Y = Tools.Random.Next(-10, 10),
             Heading = Tools.Random.Next(-3, 3),
             CurrentMovementType = Tools.RandomEnumValue<MovementType>(),
-            IPAddress = IPAddress.Loopback.ToString(),
+            IPAddress = IPAddress.Loopback,
             ExtendedDataFaultStatus = ExtendedDataFaultStatus.NoFault,
             FrozenState = Tools.RandomEnumValue<FrozenState>()
         };
     }
 
-    public static KingpinStateDto FromGood()
+    public static KingpinState FromGood()
     {
-        KingpinStateDto state = GetKingpinState();
+        KingpinState state = GetKingpinState();
         state.PositionControlStatus = PositionControlStatus.Okposition;
         state.NavigationStatus = NavigationStatus.Oknavigation;
         state.DynamicLimiterStatus = DynamicLimiterStatus.Ok;

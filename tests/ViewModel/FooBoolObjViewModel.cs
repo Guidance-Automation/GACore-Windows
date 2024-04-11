@@ -1,5 +1,6 @@
 ﻿using GACore.DemoApp.Model;
 using GACore.UI.Command;
+using GACore.UI.ViewModel;
 using System.Runtime.Versioning;
 using System.Windows.Input;
 
