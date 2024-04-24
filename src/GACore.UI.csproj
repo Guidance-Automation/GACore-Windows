@@ -2,7 +2,7 @@
 
 	<PropertyGroup>
 		<TargetFramework>net8.0-windows</TargetFramework>
-		<PackageVersion>1.0.0-alpha.7</PackageVersion>
+		<PackageVersion>1.0.0-alpha.8</PackageVersion>
 		<Platforms>x64</Platforms>
 		<UseWPF>true</UseWPF>
 		<ImplicitUsings>true</ImplicitUsings>
@@ -29,7 +29,7 @@
 
 	<ItemGroup>
 		<PackageReference Include="Extended.Wpf.Toolkit" Version="4.6.0" />
-		<PackageReference Include="GACore" Version="3.0.0-alpha.12" />
+		<PackageReference Include="GACore" Version="3.0.0-alpha.13" />
 		<PackageReference Include="NLog" Version="5.2.8" />
 		<PackageReference Include="System.Drawing.Common" Version="8.0.4" />
 	</ItemGroup>
