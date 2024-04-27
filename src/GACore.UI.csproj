@@ -2,7 +2,7 @@
 
 	<PropertyGroup>
 		<TargetFramework>net8.0-windows</TargetFramework>
-		<PackageVersion>1.0.0-alpha.7</PackageVersion>
+		<PackageVersion>1.0.0-alpha.8</PackageVersion>
 		<Platforms>x64</Platforms>
 		<UseWPF>true</UseWPF>
 		<ImplicitUsings>true</ImplicitUsings>
