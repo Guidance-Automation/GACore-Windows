@@ -1,13 +1,11 @@
 ﻿using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
-using System.Runtime.Versioning;
 
 namespace GACore.UI.Controls.Extensions;
 
 public static class BitmapExtensions
 {
-    [SupportedOSPlatform("windows")]
     /// <summary>
     /// Converts a bitmap to a generic sequence of bytes.
     /// </summary>

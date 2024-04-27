@@ -30,7 +30,7 @@ public abstract class AbstractCollectionViewModel<T, U, V> : AbstractViewModel<T
 
     private readonly SemaphoreSlim _semaphoreSlim = new(1, 1);
 
-    private void HandleAddCollectionItemModel(V collectionItemModel)
+    private async Task HandleAddCollectionItemModel(V collectionItemModel)
     {
         if (collectionItemModel == null)
         {
@@ -38,7 +38,7 @@ public abstract class AbstractCollectionViewModel<T, U, V> : AbstractViewModel<T
             return;
         }
 
-        _semaphoreSlim.Wait();
+        await _semaphoreSlim.WaitAsync();
 
         try
         {
@@ -50,7 +50,7 @@ public abstract class AbstractCollectionViewModel<T, U, V> : AbstractViewModel<T
             }
 
             U collectionItemViewModel = new() { Model = collectionItemModel };
-            Application.Current.Dispatcher.BeginInvoke(() =>
+            await Application.Current.Dispatcher.BeginInvoke(() =>
             {
                 viewModels.Add(collectionItemViewModel);
             }, DispatcherPriority.DataBind);
@@ -67,11 +67,11 @@ public abstract class AbstractCollectionViewModel<T, U, V> : AbstractViewModel<T
         }
     }
 
-    protected void HandleCollectionRefresh()
+    protected async Task HandleCollectionRefresh()
     {
         Logger?.Trace("[{0}] HandleCollectionRefresh()", GetType().Name);
 
-        Application.Current.Dispatcher.BeginInvoke(() =>
+        await Application.Current.Dispatcher.BeginInvoke(() =>
         {
             viewModels.Clear();
         }, DispatcherPriority.DataBind);
@@ -84,11 +84,11 @@ public abstract class AbstractCollectionViewModel<T, U, V> : AbstractViewModel<T
 
         foreach (V model in existingModels)
         {
-            HandleAddCollectionItemModel(model);
+            await HandleAddCollectionItemModel(model);
         }
     }
 
-    protected override void HandleModelUpdate(T? oldValue, T? newValue)
+    protected override async void HandleModelUpdate(T? oldValue, T? newValue)
     {
         if (oldValue != null) oldValue.Added -= Model_Added;
         if (oldValue != null) oldValue.Removed -= Model_Removed;
@@ -97,12 +97,12 @@ public abstract class AbstractCollectionViewModel<T, U, V> : AbstractViewModel<T
         if (newValue != null) newValue.Removed += Model_Removed;
 
         base.HandleModelUpdate(oldValue, newValue);
-        HandleCollectionRefresh();
+        await HandleCollectionRefresh();
     }
 
     public abstract U GetViewModelForModel(V model);
 
-    private void Model_Removed(V obj)
+    private async void Model_Removed(V obj)
     {
         if (obj == null)
         {
@@ -110,7 +110,7 @@ public abstract class AbstractCollectionViewModel<T, U, V> : AbstractViewModel<T
             return;
         }
 
-        _semaphoreSlim.Wait();
+        await _semaphoreSlim.WaitAsync();
 
         try
         {
@@ -122,7 +122,7 @@ public abstract class AbstractCollectionViewModel<T, U, V> : AbstractViewModel<T
                 return;
             }
 
-            Application.Current.Dispatcher.BeginInvoke(() =>
+            await Application.Current.Dispatcher.BeginInvoke(() =>
             {
                 viewModels.Remove(viewModel);
             }, DispatcherPriority.DataBind);
@@ -138,10 +138,10 @@ public abstract class AbstractCollectionViewModel<T, U, V> : AbstractViewModel<T
         }
     }
 
-    private void Model_Added(V obj)
+    private async void Model_Added(V obj)
     {
         Logger?.Trace("[{0}] Model_Added()", GetType().Name);
-        HandleAddCollectionItemModel(obj);
+        await HandleAddCollectionItemModel(obj);
     }
 
     protected virtual void Dispose(bool isDisposing)
