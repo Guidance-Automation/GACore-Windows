@@ -30,7 +30,7 @@ public static class BrushDictionaries
         { NavigationStatus.Lost, new BrushCollection("Lost", Color.Black, Color.Crimson) },
         { NavigationStatus.AssociationFailure, new BrushCollection("Association Failure", Color.Black, Color.Crimson) },
         { NavigationStatus.HighUncertainty, new BrushCollection("High Uncertainty", Color.Black, Color.Orange) },
-        { NavigationStatus.PoorAssociaton, new BrushCollection("Poor Association", Color.Black, Color.Yellow) },
+        { NavigationStatus.PoorAssociation, new BrushCollection("Poor Association", Color.Black, Color.Yellow) },
         { NavigationStatus.NoResponse, new BrushCollection("No Response", Color.Black, Color.Crimson) },
         { NavigationStatus.NoScannerData, new BrushCollection("No Scanner Data", Color.Black, Color.Crimson) }
     };
