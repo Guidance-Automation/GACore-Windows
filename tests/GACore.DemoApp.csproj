@@ -1,0 +1,27 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net8.0-windows</TargetFramework>
+		<OutputType>WinExe</OutputType>
+		<PlatformName>windows</PlatformName>
+		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+		<UseWPF>true</UseWPF>
+		<ImplicitUsings>true</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<Platforms>x64</Platforms>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\src\GACore.UI.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Extended.Wpf.Toolkit">
+			<Version>4.6.1</Version>
+		</PackageReference>
+		<PackageReference Include="Microsoft.Xaml.Behaviors.Wpf">
+			<Version>1.1.135</Version>
+		</PackageReference>
+	</ItemGroup>
+
+</Project>

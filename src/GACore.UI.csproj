@@ -1,0 +1,54 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net8.0-windows</TargetFramework>
+		<PackageVersion>1.0.0</PackageVersion>
+		<Platforms>x64</Platforms>
+		<UseWPF>true</UseWPF>
+		<ImplicitUsings>true</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<Authors>Martin Davies, Callum Clarke, Ollie Sharratt</Authors>
+		<Copyright>Guidance Automation 2024</Copyright>
+		<Description>Core components for Guidance Automation assemblies.</Description>
+		<RepositoryUrl>https://github.com/Guidance-Automation/GACore-Windows</RepositoryUrl>
+		<PackageId>GACore-windows</PackageId>
+		<Company>Guidance Automation LTD</Company>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<TargetsForTfmSpecificBuildOutput>$(TargetsForTfmSpecificBuildOutput);CopyProjectReferencesToPackage</TargetsForTfmSpecificBuildOutput>
+	</PropertyGroup>
+	<Target DependsOnTargets="BuildOnlySettings;ResolveReferences" Name="CopyProjectReferencesToPackage">
+		<ItemGroup>
+			<BuildOutputInPackage Include="@(ReferenceCopyLocalPaths-&gt;WithMetadataValue('ReferenceSourceTarget', 'ProjectReference'))" />
+		</ItemGroup>
+	</Target>
+
+	<ItemGroup>
+		<PackageReference Include="Extended.Wpf.Toolkit" Version="4.6.*" />
+		<PackageReference Include="GACore" Version="3.0.*" />
+		<PackageReference Include="NLog" Version="5.3.*" />
+		<PackageReference Include="System.Drawing.Common" Version="8.0.*" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Include="..\README.md" Pack="true" PackagePath="" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Resource Include="Resources\A_Green.ico" />
+		<Resource Include="Resources\A_Green_256.png" />
+		<Resource Include="Resources\A_Green_512.png" />
+		<Resource Include="Resources\Nucleus.ico" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Page Update="Controls\Themes\RibbonControls.xaml">
+			<Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+		</Page>
+	</ItemGroup>
+
+</Project>

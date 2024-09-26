@@ -1,0 +1,14 @@
+﻿<Application x:Class="GACore.DemoApp.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/GACore.UI;component/Controls/ResourceDictionary.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/GACore.UI;component/Controls/Themes/BannerQ45.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/GACore.UI;component/Controls/Themes/RibbonControls.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>
