@@ -3,11 +3,9 @@
 	<PropertyGroup>
 		<OutputType>WinExe</OutputType>
 		<PlatformName>windows</PlatformName>
-		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
 		<UseWPF>true</UseWPF>
 		<Platforms>x64</Platforms>
 		<NeutralLanguage>en</NeutralLanguage>
-		<AssemblyVersion>1.0.0</AssemblyVersion>
 	</PropertyGroup>
 
 	<ItemGroup>
