@@ -4,7 +4,7 @@
 		<ImplicitUsings>true</ImplicitUsings>
 		<Nullable>enable</Nullable>
 		<UseArtifactsOutput>true</UseArtifactsOutput>
-		<PackageVersion>1.0.6</PackageVersion>
+		<PackageVersion>1.0.7</PackageVersion>
 		<AssemblyVersion>$(PackageVersion)</AssemblyVersion>
 	</PropertyGroup>
 </Project>
