@@ -10,7 +10,7 @@ public class TCustomCommandAsync
     [Test]
     public void CanExecute_ReturnsTrue_WhenNotExecuting_AndCanExecuteIsNull()
     {
-        Func<Task> execute = A.Fake<Func<Task>>();
+        Func<object?, Task> execute = A.Fake<Func<object?, Task>>();
         CustomCommandAsync command = new(execute);
         bool canExecute = command.CanExecute();
 
@@ -20,7 +20,7 @@ public class TCustomCommandAsync
     [Test]
     public void CanExecute_UsesProvidedCanExecuteDelegate()
     {
-        Func<Task> execute = A.Fake<Func<Task>>();
+        Func<object?, Task> execute = A.Fake<Func<object?, Task>>();
         Func<bool> canExecute = A.Fake<Func<bool>>();
         A.CallTo(() => canExecute()).Returns(false);
         CustomCommandAsync command = new(execute, canExecute);
@@ -33,19 +33,19 @@ public class TCustomCommandAsync
     [Test]
     public async Task ExecuteAsync_CallsExecuteAndHandlesIsExecuting()
     {
-        Func<Task> execute = A.Fake<Func<Task>>();
-        A.CallTo(() => execute()).Returns(Task.CompletedTask);
+        Func<object?, Task> execute = A.Fake<Func<object?, Task>>();
+        A.CallTo(() => execute(null)).Returns(Task.CompletedTask);
         CustomCommandAsync command = new(execute);
         await command.ExecuteAsync();
 
-        A.CallTo(() => execute()).MustHaveHappenedOnceExactly();
+        A.CallTo(() => execute(null)).MustHaveHappenedOnceExactly();
     }
 
     [Test]
     public void ExecuteAsync_RaisesCanExecuteChanged_AfterExecution()
     {
-        Func<Task> execute = A.Fake<Func<Task>>();
-        A.CallTo(() => execute()).Returns(Task.CompletedTask);
+        Func<object?, Task> execute = A.Fake<Func<object?, Task>>();
+        A.CallTo(() => execute(null)).Returns(Task.CompletedTask);
         CustomCommandAsync command = new(execute);
         bool canExecuteChangedRaised = false;
         command.CanExecuteChanged += (sender, args) => canExecuteChangedRaised = true;
@@ -57,7 +57,7 @@ public class TCustomCommandAsync
     [Test]
     public void ICommand_CanExecute_CallsUnderlyingCanExecute()
     {
-        Func<Task> execute = A.Fake<Func<Task>>();
+        Func<object?, Task> execute = A.Fake<Func<object?, Task>>();
         Func<bool> canExecute = A.Fake<Func<bool>>();
         A.CallTo(() => canExecute()).Returns(true);
         CustomCommandAsync command = new(execute, canExecute);
@@ -70,11 +70,11 @@ public class TCustomCommandAsync
     [Test]
     public void ICommand_Execute_CallsExecuteAsync()
     {
-        Func<Task> execute = A.Fake<Func<Task>>();
-        A.CallTo(() => execute()).Returns(Task.CompletedTask);
+        Func<object?, Task> execute = A.Fake<Func<object?, Task>>();
+        A.CallTo(() => execute(null)).Returns(Task.CompletedTask);
         CustomCommandAsync command = new(execute);
         ((ICommand)command).Execute(null);
 
-        A.CallTo(() => execute()).MustHaveHappenedOnceExactly();
+        A.CallTo(() => execute(null)).MustHaveHappenedOnceExactly();
     }
 }

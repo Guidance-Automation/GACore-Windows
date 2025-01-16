@@ -3,7 +3,7 @@ using System.Windows.Input;
 
 namespace GACore.UI.Command;
 
-public class CustomCommandAsync(Func<Task> execute, Func<bool>? canExecute = null) : ICommand
+public class CustomCommandAsync(Func<object?, Task> execute, Func<bool>? canExecute = null) : ICommand
 {
     public event EventHandler? CanExecuteChanged;
 
@@ -15,14 +15,14 @@ public class CustomCommandAsync(Func<Task> execute, Func<bool>? canExecute = nul
         return !_isExecuting && (canExecute?.Invoke() ?? true);
     }
 
-    public async Task ExecuteAsync()
+    public async Task ExecuteAsync(object? parameter = null)
     {
         if (CanExecute())
         {
             try
             {
                 _isExecuting = true;
-                await execute();
+                await execute(parameter);
             }
             finally
             {
@@ -45,6 +45,6 @@ public class CustomCommandAsync(Func<Task> execute, Func<bool>? canExecute = nul
 
     public void Execute(object? parameter)
     {
-        ExecuteAsync().FireAndForgetSafeAsync(_logger);
+        ExecuteAsync(parameter).FireAndForgetSafeAsync(_logger);
     }
 }
