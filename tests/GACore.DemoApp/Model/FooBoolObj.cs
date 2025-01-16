@@ -4,6 +4,8 @@ public class FooBoolObj
 {
     public bool IsSet { get; set; } = false;
 
+    public bool IsSetAsync { get; set; } = false;
+
     public FooBoolObj()
     {
     }
@@ -12,5 +14,11 @@ public class FooBoolObj
     {
         bool current = IsSet;
         IsSet = !current;
+    }
+
+    public void ToggleIsSetAsync()
+    {
+        bool current = IsSetAsync;
+        IsSetAsync = !current;
     }
 }

@@ -28,7 +28,7 @@
 		<PackageReference Include="Extended.Wpf.Toolkit" Version="4.6.*" />
 		<PackageReference Include="GACore" Version="3.1.*" />
 		<PackageReference Include="NLog" Version="5.3.*" />
-		<PackageReference Include="System.Drawing.Common" Version="9.0.0" />
+		<PackageReference Include="System.Drawing.Common" Version="9.0.*" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -46,6 +46,10 @@
 		<Page Update="Controls\Themes\RibbonControls.xaml">
 			<Generator>MSBuild:UpdateDesignTimeXaml</Generator>
 		</Page>
+	</ItemGroup>
+
+	<ItemGroup>
+		<InternalsVisibleTo Include="GACore.UI.Test"/>
 	</ItemGroup>
 
 </Project>

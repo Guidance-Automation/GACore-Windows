@@ -1,28 +1,50 @@
-﻿using System.Windows.Input;
+﻿using NLog;
+using System.Windows.Input;
 
 namespace GACore.UI.Command;
 
-public class CustomCommandAsync(Func<object?, Task> executeAsync, Predicate<object?> canExecute) : ICommand
+public class CustomCommandAsync(Func<Task> execute, Func<bool>? canExecute = null) : ICommand
 {
-    private readonly Func<object?, Task> _execute = executeAsync;
-    private readonly Predicate<object?> _canExecute = canExecute;
-    private bool _isExecuting;
+    public event EventHandler? CanExecuteChanged;
 
-    public event EventHandler? CanExecuteChanged
+    private bool _isExecuting;
+    private readonly Logger _logger = LogManager.GetCurrentClassLogger();
+
+    public bool CanExecute()
     {
-        add { CommandManager.RequerySuggested += value; }
-        remove { CommandManager.RequerySuggested -= value; }
+        return !_isExecuting && (canExecute?.Invoke() ?? true);
+    }
+
+    public async Task ExecuteAsync()
+    {
+        if (CanExecute())
+        {
+            try
+            {
+                _isExecuting = true;
+                await execute();
+            }
+            finally
+            {
+                _isExecuting = false;
+            }
+        }
+
+        RaiseCanExecuteChanged();
+    }
+
+    public void RaiseCanExecuteChanged()
+    {
+        CanExecuteChanged?.Invoke(this, EventArgs.Empty);
     }
 
     public bool CanExecute(object? parameter)
     {
-        return !_isExecuting && (_canExecute == null || _canExecute(parameter));
+        return CanExecute();
     }
 
-    public async void Execute(object? parameter)
+    public void Execute(object? parameter)
     {
-        _isExecuting = true;
-        await _execute(parameter);
-        _isExecuting = false;
+        ExecuteAsync().FireAndForgetSafeAsync(_logger);
     }
 }

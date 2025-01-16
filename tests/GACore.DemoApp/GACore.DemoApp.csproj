@@ -9,13 +9,13 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\src\GACore.UI.csproj" />
-	</ItemGroup>
-
-	<ItemGroup>
 		<PackageReference Include="Microsoft.Xaml.Behaviors.Wpf">
 			<Version>1.1.135</Version>
 		</PackageReference>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\..\src\GACore.UI.csproj" />
 	</ItemGroup>
 
 </Project>

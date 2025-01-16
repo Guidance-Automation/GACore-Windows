@@ -18,12 +18,25 @@
         </ResourceDictionary>
     </UserControl.Resources>
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
         <controls:CheckboxButtonControl Style="{StaticResource RibbonCheckboxButtonControl}" IsEnabled="True"
                         IsChecked="{Binding IsSet}" CheckedText="Active" UncheckedText="Inactive">     
             <i:Interaction.Triggers>
                 <i:EventTrigger EventName="Click">
                     <i:InvokeCommandAction
                                 Command="{Binding ClickCommand}"/>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+        </controls:CheckboxButtonControl>
+        <controls:CheckboxButtonControl Grid.Column="1" Style="{StaticResource RibbonCheckboxButtonControl}" IsEnabled="True"
+                IsChecked="{Binding IsSetAsync}" CheckedText="Active Async" UncheckedText="Inactive Async">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="Click">
+                    <i:InvokeCommandAction
+                        Command="{Binding AsyncCommand}"/>
                 </i:EventTrigger>
             </i:Interaction.Triggers>
         </controls:CheckboxButtonControl>
