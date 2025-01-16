@@ -19,25 +19,49 @@ public class FooBoolObjViewModel : AbstractViewModel<FooBoolObj>
 		}
 	}
 
-	protected override void HandleModelUpdate(FooBoolObj? oldValue, FooBoolObj? newValue)
+    public bool IsSetAsync
+    {
+        get { return Model != null && Model.IsSetAsync; }
+        private set
+        {
+            Model?.ToggleIsSetAsync();
+            OnNotifyPropertyChanged();
+        }
+    }
+
+    protected override void HandleModelUpdate(FooBoolObj? oldValue, FooBoolObj? newValue)
 	{
 		OnNotifyPropertyChanged(nameof(IsSet));
 		base.HandleModelUpdate(oldValue, newValue);
 	}
 
 	public ICommand? ClickCommand { get; set; }
+    public ICommand? AsyncCommand { get; set; }
 
-	private void HandleCommands()
+    private void HandleCommands()
 	{
 		ClickCommand = new CustomCommand(ClickCommandClick, CanClickCommandClick);
-	}
+		AsyncCommand = new CustomCommandAsync(ClickCommandAsync, CanClickCommandAsync);
+
+    }
 
     private void ClickCommandClick(object? obj)
     {
         IsSet = false; // Forces recalc
     }
 
+    private async Task ClickCommandAsync()
+    {
+        await Task.Delay(100);
+        IsSetAsync = false; // Forces recalc
+    }
+
     private bool CanClickCommandClick(object? obj)
+    {
+        return true;
+    }
+
+    private bool CanClickCommandAsync()
     {
         return true;
     }
