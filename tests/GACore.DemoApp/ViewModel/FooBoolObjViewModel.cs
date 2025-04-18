@@ -50,7 +50,7 @@ public class FooBoolObjViewModel : AbstractViewModel<FooBoolObj>
         IsSet = false; // Forces recalc
     }
 
-    private async Task ClickCommandAsync()
+    private async Task ClickCommandAsync(object? obj)
     {
         await Task.Delay(100);
         IsSetAsync = false; // Forces recalc
